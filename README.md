@@ -57,6 +57,7 @@ D2_0    0    0    0
 dendritic_integration <- ClusterMatch_integration(dendritic_batch1, dendritic_batch2, ref.res = dendritic_res$D1_ref_res,
                                                   que.res = dendritic_res$D2_que_res, ref.norm = FALSE, que.norm = FALSE, random_PCC = 1.3, distance_diff = 3, distance_same = 1)
 ```
+UMAP visualization colored by the annotated batches
 
 ```
 umap_df <- ClusterMatch_UMAP(embedding = dendritic_integration$cell_embedding, celltype = dendritic_celltype)
@@ -71,7 +72,9 @@ ggplot(umap_df,aes(X1,X2,color=batch)) +
   labs(x="UMAP_1",y="UMAP_2",
        title = "ClusterMatch")
 ```
+<img width="725" alt="截屏2023-12-07 08 51 54" src="https://github.com/BateerCoder/ClusterMatch/assets/150581842/c128fb10-1349-4b2d-8ac6-208ac2e3d39c">
 
+UMAP visualization colored by the annotated cell types
 ```
 ggplot(umap_df,aes(X1,X2,color=label)) + 
   scale_color_manual(values = celltype_colour)+
@@ -80,6 +83,8 @@ ggplot(umap_df,aes(X1,X2,color=label)) +
   labs(x="UMAP_1",y="UMAP_2",
        title = "ClusterMatch")
 ```
+<img width="725" alt="截屏2023-12-07 08 51 36" src="https://github.com/BateerCoder/ClusterMatch/assets/150581842/9c54dc3e-99a1-4159-8495-4fcb5db58ab5">
+
 ### 2.5	Annotate the query data based on the reference data labels
 ```
 dLGN_annotation <- ClusterMatch_annotation(human_dLGN, macaque_dLGN, human_celltype, que.res=2, ref.norm = FALSE, que.norm = FALSE)
